@@ -82,4 +82,4 @@ This is an example of how to list things you need to use the software and how to
 
 Lynn Alhaimy - leen.alhaimy@gmail.com
 
-Project Link: [https://github.com/lmalhaim/airline-webapp](https://github.com/lmalhaim/airline-webapp)
+Project Link: [https://github.com/lmalhaim/Reminder_mobile_app](https://github.com/lmalhaim/Reminder_mobile_app)
