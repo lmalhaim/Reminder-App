@@ -69,11 +69,11 @@ This is an example of how to list things you need to use the software and how to
 5. A bar code will appear in the terminal 
 
 6. Run imulator: 
-  i. To run imulator on mobile: 
+    a. To run imulator on mobile: 
        1. Download Expo Go application 
        2. Scan the bar code using phone camera 
        3. Access app directly from Expo Go 
-  ii. To run imulator on Laptop: 
+    b. To run imulator on Laptop: 
        1. Go to terminal 
        2. press i 
 
