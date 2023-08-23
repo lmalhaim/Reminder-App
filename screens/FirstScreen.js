@@ -1,11 +1,11 @@
 import * as React from "react";
-import styles from "../StyleSheet";
+import styles from "../assets/StyleSheet";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 export default function FirstScreen(props) {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../Images/calendar.jpeg")} />
+      <Image style={styles.image} source={require("../assets/Images/calendar.jpeg")} />
       <View style={styles.buttonLocation}>
         <View style={styles.buttonView}>
           <TouchableOpacity

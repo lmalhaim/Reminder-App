@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 
-import styles from "../../StyleSheet";
+import styles from "../../assets/StyleSheet";
 export default function Email_pass(props) {
   const [email, setEmail] = useState();
   const [pass, setPass] = useState();

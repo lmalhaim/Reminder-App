@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { TouchableOpacity, View, ScrollView, Modal } from "react-native";
 import { Icon } from "react-native-elements";
-import styles from "../StyleSheet";
+import styles from "../assets/StyleSheet";
 import { readEvents, initializeDB } from "./api/EventApi.js";
 import EventComp from "./view/Event";
 

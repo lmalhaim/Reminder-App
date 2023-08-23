@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from "react-native";
-import styles from "../StyleSheet";
+import styles from "../assets/StyleSheet";
 import { addEvent, readEvents } from "./api/EventApi.js";
 import { Icon } from "react-native-elements";
 

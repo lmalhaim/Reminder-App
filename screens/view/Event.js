@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import { removeEvent, readEvents } from "../api/EventApi.js";
 import { to12hours } from "../helper/TimeFormatter";
 import { Icon } from "react-native-elements";
-import styles from "../../StyleSheet";
+import styles from "../../assets/StyleSheet";
 const EventComp = (props) => {
   const toDateTime = (dateTime) => {
     let day = dateTime.DayOfWeek;

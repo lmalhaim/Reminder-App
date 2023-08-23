@@ -35,24 +35,16 @@ This a simple React Native app that functions as a reminder app. Where user can 
 * Platform: Expo 
 * DataBase: FireBase
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-
 ### Prerequisites
-
 This is an example of how to list things you need to use the software and how to install them.
 * npm
-  ```sh
-  npm install 
-  ```
 * Expo
   ```sh
   npm i expo-cli -g
   ```
+* Download the [Expo Go](https://expo.dev/client) application on your phone
 
 ### Installation
-
 1. Install prerequisites to machine 
 2. Clone the repo
    ```sh
@@ -64,22 +56,10 @@ This is an example of how to list things you need to use the software and how to
    ```
 4. Start app
    ```sh
-   expo start
+   npm start 
    ```
-5. A bar code will appear in the terminal 
+5. After that a set of instructions will appear on your terminal, please scan the bar code using your phone to use Expo Go.   
+**Note: While it's possible to access the app via a browser, the user interface will not display correctly as it is designed for mobile devices.**
 
-6. Run imulator: 
-    * On mobile: 
-        1. Download Expo Go application 
-        2. Scan the bar code using phone camera 
-        3. Access app directly from Expo Go 
-    * On Laptop: 
-        1. Go to terminal 
-        2. press i 
-
-<!-- CONTACT -->
 ## Contact
-
 Lynn Alhaimy - leen.alhaimy@gmail.com
-
-Project Link: [https://github.com/lmalhaim/Reminder_mobile_app](https://github.com/lmalhaim/Reminder_mobile_app)

@@ -3,12 +3,11 @@ import {
   View,
   KeyboardAvoidingView,
   TextInput,
-  StyleSheet,
   Button,
   Alert,
 } from "react-native";
 import { resetPass } from "./api/EventApi.js";
-import styles from "../StyleSheet";
+import styles from "../assets/StyleSheet";
 
 export default function ForgotPass(props) {
   const [email, setEmail] = useState();

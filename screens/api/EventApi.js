@@ -1,5 +1,6 @@
-import * as firebase from "firebase";
-
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth'; 
+import 'firebase/compat/firestore';
 const firebaseConfig = {
   apiKey: "AIzaSyBjKFmEHikysejg8Be_XTijhACtgwDQEDM",
   authDomain: "countdown-79765.firebaseapp.com",
@@ -10,16 +11,17 @@ const firebaseConfig = {
   measurementId: "G-G5TKTKWYEG",
 };
 
+let app; 
 if (firebase.apps.length == 0) {
   try {
-    firebase.initializeApp(firebaseConfig);
+    app = firebase.initializeApp(firebaseConfig);
   } catch (err) {
     console.log(err);
   }
 }
 
 //declare database
-const db = firebase.firestore();
+const db = app.firestore();
 const auth = firebase.auth();
 const userRef = db.collection("users");
 let eventRef = "";

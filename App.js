@@ -8,13 +8,13 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import "firebase/firestore";
-import EventList from "./assets/screens/EventList.js";
-import CreateEvent from "./assets/screens/CreateEvent.js";
-import SignUp from "./assets/screens/SignUp.js";
-import SignIn from "./assets/screens/SignIn.js";
-import ForgotPass from "./assets/screens/FogotPass";
-import Account from "./assets/screens/Account.js";
-import FirstScreen from "./assets/screens/FirstScreen.js";
+import EventList from "./screens/EventList.js";
+import CreateEvent from "./screens/CreateEvent.js";
+import SignUp from "./screens/SignUp.js";
+import SignIn from "./screens/SignIn.js";
+import ForgotPass from "./screens/FogotPass";
+import Account from "./screens/Account.js";
+import FirstScreen from "./screens/FirstScreen.js";
 
 const Stack = createStackNavigator();
 
