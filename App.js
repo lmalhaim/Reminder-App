@@ -4,8 +4,12 @@ import * as React from "react";
 import {
   StyleSheet,
   Button,
+  Pressable,
+  TouchableOpacity,
+  Text,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
+import { NavigationContainer, DefaultTheme} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import "firebase/firestore";
 import EventList from "./screens/EventList.js";
@@ -18,31 +22,33 @@ import FirstScreen from "./screens/FirstScreen.js";
 
 const Stack = createStackNavigator();
 
-export default function App() { 
+export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName="First Screen">
         <Stack.Screen
           name="First Screen"
           component={FirstScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: false,
+        }}
         />
         <Stack.Screen name="Account Managment" component={Account} />
         <Stack.Screen name="Sign Up" component={SignUp} />
         <Stack.Screen name="Sign In" component={SignIn} />
         <Stack.Screen name="Forgot Password" component={ForgotPass} />
         <Stack.Screen
-          name="All Events"
+          name="Reminders"
           component={EventList}
           options={({ navigation }) => ({
             // get reference to navigation
             headerRight: () => (
-              <Button
-                title="Account"
+              <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("Account Managment");
                 }}
-              />
+              >
+                <Text style={{ color: "#0d3a9b", fontSize: 17, paddingRight: 15 }}>Account</Text>
+              </TouchableOpacity>
             ),
             headerLeft: () => {
               null;

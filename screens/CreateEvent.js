@@ -12,7 +12,7 @@ import { Icon } from "react-native-elements";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import { MonthToNum, TimeStringToValues } from "./helper/TimeFormatter";
+import { monthToNum, timeStringToValues } from "./helper/TimeFormatter";
 
 export default function CreateEvent(props) {
   const [title, setTitle] = useState();
@@ -36,21 +36,19 @@ export default function CreateEvent(props) {
       today_T = [];
 
     //get Event Date Values
-    [event_fullD, event_D, event_M, event_Y, event_T] = TimeStringToValues(
-      dateTime
-    );
+    [event_fullD, event_D, event_M, event_Y, event_T] =
+      timeStringToValues(dateTime);
 
     //get Today Date Values;
     let today = new Date();
-    [today_fullD, today_D, today_M, today_Y, today_T] = TimeStringToValues(
-      today
-    );
+    [today_fullD, today_D, today_M, today_Y, today_T] =
+      timeStringToValues(today);
 
     let Y_diff = event_Y - today_Y;
     if (Y_diff < 0) {
       return {};
     } else if (Y_diff == 0) {
-      let M_diff = MonthToNum(event_M) - MonthToNum(today_M);
+      let M_diff = monthToNum(event_M) - monthToNum(today_M);
       if (M_diff < 0) {
         return {};
       } else if (M_diff == 0) {
@@ -140,7 +138,7 @@ export default function CreateEvent(props) {
           />
         </View>
       </View>
-      <View style={styles.buttonLocation}>
+      <View style={styles.overlay}>
         <Button
           onPress={() => {
             addEventHandler();

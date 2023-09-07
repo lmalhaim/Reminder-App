@@ -5,9 +5,14 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 export default function FirstScreen(props) {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../assets/Images/calendar.jpeg")} />
-      <View style={styles.buttonLocation}>
-        <View style={styles.buttonView}>
+      <Image
+        blurRadius={15}
+        style={styles.image}
+        source={require("../assets/Images/calendar.jpeg")}
+      />
+      <View style={styles.overlay}>
+        <Text style={{fontSize: 50, marginBottom: 180}}>No more exuses, start <Text style={{fontWeight: "bold"}}>Remind</Text>ing Today</Text>
+        <View style={[styles.buttonView,  styles.landingScreenButton]}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -17,7 +22,7 @@ export default function FirstScreen(props) {
             <Text style={styles.buttonText}> SIGN UP</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.buttonView}>
+        <View style={[styles.buttonView, styles.landingScreenButton]}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {

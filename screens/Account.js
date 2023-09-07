@@ -9,7 +9,6 @@ import {
 import { resetPass, fetchEmail, updateEmail, logOut } from "./api/EventApi";
 import styles from "../assets/StyleSheet";
 
-
 export default function Account(props) {
   const [changeEmail, setChangeEmail] = useState(true);
   const [email, setEmail] = useState(fetchEmail());
@@ -75,7 +74,7 @@ export default function Account(props) {
           }}
         />
       </View>
-      <View style={styles.buttonLocation}>
+      <View style={styles.overlay}>
         <Button
           title="Reset Password"
           onPress={() => {

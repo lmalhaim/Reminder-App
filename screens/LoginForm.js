@@ -5,10 +5,17 @@ import {
   TextInput,
   View,
   KeyboardAvoidingView,
+  TouchableOpacity,
+  Text,
 } from "react-native";
 
-import styles from "../../assets/StyleSheet";
-export default function Email_pass(props) {
+import styles from "../assets/StyleSheet";
+export default function LoginForm({
+  handleClick,
+  showForgotPass,
+  buttonTitle,
+  navigation,
+}) {
   const [email, setEmail] = useState();
   const [pass, setPass] = useState();
 
@@ -26,7 +33,7 @@ export default function Email_pass(props) {
           />
         </KeyboardAvoidingView>
       </View>
-      <View style={styles.inputContainer}>
+      <View style={{ ...styles.inputContainer }}>
         <KeyboardAvoidingView>
           <TextInput
             placeholder="password"
@@ -40,22 +47,38 @@ export default function Email_pass(props) {
         </KeyboardAvoidingView>
       </View>
 
-      {props.forgot_pass && (
-        <Button
-          title="forgot password"
+      {showForgotPass && (
+        <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate("Forgot Password");
+            navigation.navigate("Forgot Password");
           }}
-        />
+        >
+          <Text style={{ color: "#0d3a9b", fontSize: 15 }}>
+            {" "}
+            Forgot Password{" "}
+          </Text>
+        </TouchableOpacity>
       )}
 
-      <View style={styles.buttonLocation}>
-        <Button
-          title={props.button_title}
+      <View
+        style={{
+          ...styles.buttonView,
+          width: 150,
+          position: "absolute",
+          bottom: 100,
+        }}
+      >
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => {
-            props.function(email, pass);
+            handleClick(email, pass);
           }}
-        />
+        >
+          <Text style={{ fontSize: 18, color: "white" }}>
+            {" "}
+            {buttonTitle.toUpperCase()}{" "}
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

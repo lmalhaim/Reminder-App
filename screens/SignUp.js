@@ -2,7 +2,7 @@ import React from "react";
 
 import { addUser } from "./api/EventApi.js";
 
-import Email_pass from "./view/Email_Pass.js";
+import LoginForm from "./LoginForm.js";
 
 export default function SignUp(props) {
   const createUser = async (email, pass) => {
@@ -10,16 +10,16 @@ export default function SignUp(props) {
     if (message != "") {
       alert(message);
     } else {
-      props.navigation.navigate("All Events");
+      props.navigation.navigate("Reminders");
     }
   };
 
   return (
-    <Email_pass
-      function={createUser}
-      forgot_pass={false}
+    <LoginForm
+      handleClick={createUser}
+      showForgotPass={false}
       navigation={props.navigation}
-      button_title="Sign up"
+      buttonTitle="Sign up"
     />
   );
 }

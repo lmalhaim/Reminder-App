@@ -1,14 +1,14 @@
 import React from "react";
 import { Text, View, TouchableOpacity, Dimensions } from "react-native";
-import { removeEvent, readEvents } from "../api/EventApi.js";
-import { to12hours } from "../helper/TimeFormatter";
+import { removeEvent, readEvents } from "./api/EventApi.js";
+import { to12HourFormat } from "./helper/TimeFormatter.js";
 import { Icon } from "react-native-elements";
-import styles from "../../assets/StyleSheet";
-const EventComp = (props) => {
+import styles from "../assets/StyleSheet.js";
+const Event = (props) => {
   const toDateTime = (dateTime) => {
     let day = dateTime.DayOfWeek;
     let date = dateTime.Month + " " + dateTime.Day + ", " + dateTime.Year;
-    let time = to12hours(dateTime.Time);
+    let time = to12HourFormat(dateTime.Time);
     return { day: day, date: date, time: time };
   };
 
@@ -38,4 +38,4 @@ const EventComp = (props) => {
   );
 };
 
-export default EventComp;
+export default Event;

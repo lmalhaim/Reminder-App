@@ -22,13 +22,18 @@ export default StyleSheet.create({
     alignContent: "center",
   },
   image: {
+    flex: 1,
+    position: 'absolute', 
     width: "100%",
     height: "100%",
     resizeMode: "cover",
   },
-  buttonLocation: {
-    position: "absolute",
-    bottom: 100,
+  overlay: {
+    marginTop: 'auto', 
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    bottom: 50, 
   },
   buttonView: {
     padding: 10,
@@ -37,7 +42,10 @@ export default StyleSheet.create({
     borderWidth: 2,
     margin: 5,
     borderRadius: 5,
+  },
+  landingScreenButton: {
     width: Dimensions.get("window").width - 25,
+    maxWidth: 500,
     height: 60,
   },
   button: {
@@ -45,7 +53,7 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   buttonText: {
-    marginTop: "3%",
+    marginTop: "1%",
     fontSize: 20,
     color: "white",
     fontWeight: "bold",

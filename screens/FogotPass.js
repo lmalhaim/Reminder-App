@@ -34,7 +34,7 @@ export default function ForgotPass(props) {
           />
         </KeyboardAvoidingView>
       </View>
-      <View style={styles.buttonLocation}>
+      <View style={styles.overlay}>
         <Button
           title="Submit"
           onPress={() => {

@@ -109,7 +109,7 @@ export function logOut() {
       console.log("User signed out");
     })
     .catch((err) => {
-      console.log(err);
+      console.log("error signing out", err);
     });
 }
 
@@ -158,9 +158,27 @@ export function removeEvent(event) {
       console.log("removed");
     })
     .catch((error) => {
-      console.log("not removed");
+      console.log("Error removing event:", error);
     });
 }
+
+export async function readUserData() {
+  try {
+    const userID = auth.currentUser.uid;
+    const userDoc = await userRef.doc(userID).get();
+    if (userDoc.exists) {
+      const name = userDoc.data().name;
+      return name;
+    } else {
+      console.log("User document does not exist.");
+      return null;
+    }
+  } catch (err) {
+    console.log("Error reading user data:", err);
+    return null; 
+  }
+}
+
 
 export async function readEvents(RetrievedEvents) {
   try {

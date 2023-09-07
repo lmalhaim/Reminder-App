@@ -1,6 +1,6 @@
-import Email_pass from "./view/Email_Pass.js";
 import React from "react";
 import { logIn } from "./api/EventApi.js";
+import LoginForm from "./LoginForm.js";
 
 export default function SignIn(props) {
   const log_in = async (email, pass) => {
@@ -8,15 +8,15 @@ export default function SignIn(props) {
     if (message != "") {
       alert(message);
     } else {
-      props.navigation.navigate("All Events");
+      props.navigation.navigate("Reminders");
     }
   };
   return (
-    <Email_pass
-      function={log_in}
-      forgot_pass={true}
+    <LoginForm
+      handleClick={log_in}
+      showForgotPass={true}
       navigation={props.navigation}
-      button_title="Sign in"
+      buttonTitle="Sign in"
     />
   );
 }
