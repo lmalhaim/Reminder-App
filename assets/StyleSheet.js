@@ -61,21 +61,19 @@ export default StyleSheet.create({
   addEventButton: {
     position: "absolute",
     bottom: 60,
-    left: "75%",
-    opacity: 0.6,
-  },
-  datePicker: {
-    width: 150,
-    marginLeft: 25,
-  },
-  timePicker: {
-    width: 150,
-    marginLeft: 65,
+    right: 20,
+    display: "flex", 
+    flexDirection: "row", 
+    justifyContent: "flex-start",
+    alignItems: "center", 
+    backgroundColor: "black", 
+    color: "white",
+    padding: 20, 
+    borderRadius: 30, 
   },
   exitButton: {
-    position: "absolute",
-    right: "32%",
-    bottom: 230,
+    alignSelf: "flex-end", 
+    marginBottom: 50,
   },
   event: {
     backgroundColor: "gray",

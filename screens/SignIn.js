@@ -1,6 +1,6 @@
 import React from "react";
 import { logIn } from "./api/EventApi.js";
-import LoginForm from "./LoginForm.js";
+import LoginForm from "./components/LoginForm.js";
 
 export default function SignIn(props) {
   const log_in = async (email, pass) => {
@@ -14,7 +14,7 @@ export default function SignIn(props) {
   return (
     <LoginForm
       handleClick={log_in}
-      showForgotPass={true}
+      signUpForm={false}
       navigation={props.navigation}
       buttonTitle="Sign in"
     />

@@ -7,11 +7,12 @@ import {
   Alert,
 } from "react-native";
 import { resetPass } from "./api/EventApi.js";
-import styles from "../assets/StyleSheet";
+import styles from "../assets/StyleSheet.js";
+import CustomButton from "./components/CustomButton.js";
 
-export default function ForgotPass(props) {
+export default function ForgotPassword(props) {
   const [email, setEmail] = useState();
-  const forgotPass = async () => {
+  const handleForgotPassword = async () => {
     let message = await resetPass(email);
     if (message != "") {
       alert(message);
@@ -22,7 +23,7 @@ export default function ForgotPass(props) {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
+      <View style={{ ...styles.inputContainer}}>
         <KeyboardAvoidingView>
           <TextInput
             placeholder="email"
@@ -34,14 +35,10 @@ export default function ForgotPass(props) {
           />
         </KeyboardAvoidingView>
       </View>
-      <View style={styles.overlay}>
-        <Button
-          title="Submit"
-          onPress={() => {
-            forgotPass();
-          }}
-        />
-      </View>
+      <CustomButton variant={"outline"} onClickHandler={handleForgotPassword} buttonTitle="Submit" styleProps={{
+        view: {width: 150,
+          marginTop: 100,}
+      }}/>
     </View>
   );
 }

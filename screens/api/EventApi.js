@@ -1,6 +1,6 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth'; 
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyBjKFmEHikysejg8Be_XTijhACtgwDQEDM",
   authDomain: "countdown-79765.firebaseapp.com",
@@ -11,7 +11,7 @@ const firebaseConfig = {
   measurementId: "G-G5TKTKWYEG",
 };
 
-let app; 
+let app;
 if (firebase.apps.length == 0) {
   try {
     app = firebase.initializeApp(firebaseConfig);
@@ -44,31 +44,37 @@ export function fetchEmail() {
 }
 
 export async function updateEmail(currentEmail, newEmail, password) {
-  try {
-    const userCred = await auth.signInWithEmailAndPassword(
-      currentEmail,
-      password
-    );
-    const response = await userCred.user
-      .updateEmail(newEmail)
-      .then(() => {
-        return true;
-      })
-      .catch((error) => {
-        return false;
-      });
-
-    return await response;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function addUser(email, password) {
-  let response = await auth
-    .createUserWithEmailAndPassword(email, password)
+  return await auth
+    .signInWithEmailAndPassword(currentEmail, password)
+    .then(async (userCred) => {
+      return await userCred.user.updateEmail(newEmail);
+    })
     .then(() => {
       return "";
+    })
+    .catch((error) => {
+      return error.message;
+    });
+}
+
+export async function addUser(email, password, name) {
+  let response = await auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(async (userCred) => {
+      console.log("HERERERERE", userCred);
+      let res = await userRef
+        .doc(userCred.user.uid)
+        .set({
+          name,
+        })
+        .then(() => {
+          console.log("created name");
+          return "";
+        })
+        .catch((_) => {
+          return "Error creating user, please try again";
+        });
+      return res;
     })
     .catch((error) => {
       if (error.code === "auth/email-already-in-use") {
@@ -175,10 +181,9 @@ export async function readUserData() {
     }
   } catch (err) {
     console.log("Error reading user data:", err);
-    return null; 
+    return null;
   }
 }
-
 
 export async function readEvents(RetrievedEvents) {
   try {

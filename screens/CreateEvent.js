@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import {
   TextInput,
   View,
-  Button,
+  Text,
   KeyboardAvoidingView,
   TouchableOpacity,
 } from "react-native";
 import styles from "../assets/StyleSheet";
 import { addEvent, readEvents } from "./api/EventApi.js";
 import { Icon } from "react-native-elements";
-
+import CustomButton from "./components/CustomButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import { monthToNum, timeStringToValues } from "./helper/TimeFormatter";
+import { verifyDate } from "./helper/TimeFormatter";
 
 export default function CreateEvent(props) {
   const [title, setTitle] = useState();
@@ -23,62 +23,8 @@ export default function CreateEvent(props) {
     setDateTime(currentDate);
   };
 
-  async function verifyDate(dateTime) {
-    let event_fullD,
-      today_fullD = "";
-    let event_D,
-      event_M,
-      event_Y,
-      today_D,
-      today_M,
-      today_Y = 0;
-    let event_T,
-      today_T = [];
-
-    //get Event Date Values
-    [event_fullD, event_D, event_M, event_Y, event_T] =
-      timeStringToValues(dateTime);
-
-    //get Today Date Values;
-    let today = new Date();
-    [today_fullD, today_D, today_M, today_Y, today_T] =
-      timeStringToValues(today);
-
-    let Y_diff = event_Y - today_Y;
-    if (Y_diff < 0) {
-      return {};
-    } else if (Y_diff == 0) {
-      let M_diff = monthToNum(event_M) - monthToNum(today_M);
-      if (M_diff < 0) {
-        return {};
-      } else if (M_diff == 0) {
-        let T_diff = event_D - today_D;
-        if (T_diff < 0) {
-          return {};
-        } else if (T_diff == 0) {
-          let hr_diff = Number(event_T[0]) - Number(today_T[0]);
-          if (hr_diff < 0) {
-            return {};
-          } else if (hr_diff == 0) {
-            let min_diff = Number(event_T[1]) - Number(today_T[1]);
-            if (min_diff <= 0) {
-              return {};
-            }
-          }
-        }
-      }
-    }
-    return {
-      DayOfWeek: event_fullD,
-      Day: event_D,
-      Month: event_M,
-      Year: event_Y,
-      Time: event_T,
-    };
-  }
-
   async function addEventHandler() {
-    const deadline = await verifyDate(dateTime);
+    const deadline = verifyDate(dateTime);
     if (Object.keys(deadline).length != 0) {
       addEvent({ title: title, deadline: deadline });
       readEvents(props.RetrievedEvents);
@@ -87,19 +33,22 @@ export default function CreateEvent(props) {
       alert("event has to be in the future");
     }
   }
+
   return (
-    <View style={styles.container}>
+    <View style={{padding: 15, width: "90%", height: 'auto', borderRadius: 10,shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3 ,backgroundColor: "#fcfcfc",  justifyContent: "center",
+    alignItems: "center",}}>
+      <TouchableOpacity
+        onPress={() => {
+          props.togglePopup();
+        }}
+        style={styles.exitButton}
+      >
+        <Icon name="close-outline" type="ionicon" size={40} color={"black"} />
+      </TouchableOpacity>
       <View>
-        <View style={styles.exitButton}>
-          <TouchableOpacity
-            onPress={() => {
-              props.togglePopup();
-            }}
-          >
-            <Icon name="close-circle-outline" type="ionicon" size={50} />
-          </TouchableOpacity>
-        </View>
-      </View>
       <View style={styles.inputContainer}>
         <KeyboardAvoidingView>
           <TextInput
@@ -110,42 +59,45 @@ export default function CreateEvent(props) {
           />
         </KeyboardAvoidingView>
       </View>
+      <View
+        style={{
+          marginTop: 10, 
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center"
+        }}
+      >
 
-      <View style={styles.inputContainer}>
-        <View>
-          <DateTimePicker
-            style={styles.datePicker}
-            testID="dateTimePicker"
-            value={dateTime}
-            mode={"date"}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        </View>
-      </View>
-
-      <View style={styles.inputContainer}>
-        <View>
-          <DateTimePicker
-            style={styles.timePicker}
-            testID="dateTimePicker"
-            value={dateTime}
-            mode={"time"}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        </View>
-      </View>
-      <View style={styles.overlay}>
-        <Button
-          onPress={() => {
-            addEventHandler();
-          }}
-          title="add event"
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={dateTime}
+          mode={"time"}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={dateTime}
+          mode={"date"}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
         />
       </View>
+      </View>
+      <CustomButton
+        variant="outline"
+        styleProps={{
+          view: {
+            width: 180,
+            marginTop: 50,
+          },
+        }}
+        onClickHandler={addEventHandler}
+        buttonTitle={"Add Event"}
+      />
     </View>
   );
 }

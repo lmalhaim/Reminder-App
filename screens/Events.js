@@ -1,17 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity, View, ScrollView, Modal } from "react-native";
+import { TouchableOpacity, View, ScrollView, Modal, Text } from "react-native";
 import { Icon } from "react-native-elements";
 import styles from "../assets/StyleSheet";
 import { readEvents, initializeDB, readUserData } from "./api/EventApi.js";
-import Event from "./Event";
+import Event from "./components/Event";
 
 import CreateEvent from "./CreateEvent";
-const EventList = ({ navigation }) => {
+import { verifyDate } from "./helper/TimeFormatter";
+const Events = ({ navigation }) => {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState([]);
   const [showPopUp, setPopupVisible] = useState(false);
-  const [Token, setToken] = useState("");
 
   const RetrievedEvents = (recievedEvents) => {
     setEvents(recievedEvents);
@@ -41,11 +41,12 @@ const EventList = ({ navigation }) => {
     getUser();
     if (user && user.name) {
       navigation.setOptions({
-        title: `Welcome, ${user.name[0].toUpperCase()}${user.name.substring(1)}`, 
-      })
+        title: `Welcome, ${user.name[0].toUpperCase()}${user.name.substring(
+          1
+        )}`,
+      });
     }
-  });
-
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -63,21 +64,31 @@ const EventList = ({ navigation }) => {
           );
         })}
       </ScrollView>
-      {showPopUp && (
-        <Modal>
+      
+        <Modal visible={showPopUp} transparent={true} animationType="slide">
+          <View style={{...styles.container, backgroundColor:"rgb(0, 0, 0, 0.5)", shadowColor: "black",           
+          }}>
+
           <CreateEvent
             RetrievedEvents={RetrievedEvents}
             togglePopup={togglePopup}
           />
+          </View>
         </Modal>
-      )}
+
+
+
       <TouchableOpacity
         onPress={() => {
           togglePopup();
         }}
         style={styles.addEventButton}
       >
-        <Icon name="add-circle-outline" type="ionicon" size={90} />
+        <Icon name="add-outline" type="ionicon" size={30} color="white"/>
+        <Text style={{fontSize: 20, color: "white"}}>
+          Add Reminder
+        </Text>
+        
       </TouchableOpacity>
 
       <StatusBar style="auto" />
@@ -85,4 +96,4 @@ const EventList = ({ navigation }) => {
   );
 };
 
-export default EventList;
+export default Events;

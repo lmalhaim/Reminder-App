@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "../assets/StyleSheet";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, View } from "react-native";
+import CustomButton from "./components/CustomButton";
 
 export default function FirstScreen(props) {
   return (
@@ -11,27 +12,32 @@ export default function FirstScreen(props) {
         source={require("../assets/Images/calendar.jpeg")}
       />
       <View style={styles.overlay}>
-        <Text style={{fontSize: 50, marginBottom: 180}}>No more exuses, start <Text style={{fontWeight: "bold"}}>Remind</Text>ing Today</Text>
-        <View style={[styles.buttonView,  styles.landingScreenButton]}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              props.navigation.navigate("Sign Up");
-            }}
-          >
-            <Text style={styles.buttonText}> SIGN UP</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[styles.buttonView, styles.landingScreenButton]}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              props.navigation.navigate("Sign In");
-            }}
-          >
-            <Text style={styles.buttonText}> SIGN IN</Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={{ fontSize: 50, marginBottom: 180 }}>
+          No more exuses, start{" "}
+          <Text style={{ fontWeight: "bold" }}>Remind</Text>ing Today
+        </Text>
+        <CustomButton
+          styleProps={{
+            view: styles.landingScreenButton,
+            text: styles.buttonText,
+          }}
+          variant="outline"
+          onClickHandler={() => {
+            props.navigation.navigate("Sign Up");
+          }}
+          buttonTitle="SIGN UP"
+        />
+        <CustomButton
+          styleProps={{
+            view: styles.landingScreenButton,
+            text: styles.buttonText,
+          }}
+          variant="outline"
+          onClickHandler={() => {
+            props.navigation.navigate("Sign In");
+          }}
+          buttonTitle="SIGN IN"
+        />
       </View>
     </View>
   );
